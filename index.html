@@ -301,7 +301,7 @@ function submitToNotion() {
   setStatus("loading", "Notion'a ekleniyor...");
   var today = new Date().toISOString().split("T")[0];
   var props = {
-    "": { title: [{ text: { content: title } }] },
+    "Başlık": { title: [{ text: { content: title } }] },
     "Yazar / Kurum": { rich_text: [{ text: { content: author } }] },
     "Summary": { rich_text: [{ text: { content: summary } }] },
     "Added By": { rich_text: [{ text: { content: addedBy } }] },
