@@ -1,7 +1,11 @@
 [build]
   functions = "netlify/functions"
   publish = "."
-  command = "echo 'ok'"
+  command = "echo ok"
 
 [build.environment]
   NODE_VERSION = "18"
+  NPM_FLAGS = "--version"
+
+[functions]
+  node_bundler = "esbuild"
