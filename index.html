@@ -5,49 +5,43 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GİRVAK Kaynak Kütüphanesi</title>
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f4f0; min-height: 100vh; display: flex; align-items: flex-start; justify-content: center; padding: 2rem 1rem; }
-  .card { background: white; border-radius: 12px; border: 0.5px solid #e0ddd6; padding: 2rem; width: 100%; max-width: 560px; }
-  .logo { font-size: 13px; font-weight: 500; color: #888; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 1.5rem; }
-  h1 { font-size: 20px; font-weight: 500; color: #1a1a1a; margin-bottom: 0.4rem; }
-  .subtitle { font-size: 14px; color: #888; margin-bottom: 1.5rem; }
-  .tabs { display: flex; gap: 4px; background: #f5f4f0; border-radius: 8px; padding: 4px; margin-bottom: 1.5rem; }
-  .tab { flex: 1; padding: 7px 12px; border: none; border-radius: 6px; background: transparent; font-size: 13px; font-weight: 500; color: #888; cursor: pointer; transition: all 0.15s; }
-  .tab.active { background: white; color: #1a1a1a; border: 0.5px solid #e0ddd6; }
-  .tab-content { display: none; }
-  .tab-content.active { display: block; }
-  .pdf-drop { border: 1.5px dashed #d8d5ce; border-radius: 10px; padding: 2rem; text-align: center; cursor: pointer; transition: all 0.15s; margin-bottom: 1.25rem; background: #fafaf8; }
-  .pdf-drop:hover, .pdf-drop.drag-over { border-color: #1a1a1a; background: #f5f4f0; }
-  .pdf-drop input[type="file"] { display: none; }
-  .pdf-drop-icon { font-size: 28px; margin-bottom: 8px; }
-  .pdf-drop-text { font-size: 13px; color: #888; }
-  .pdf-drop-text strong { color: #1a1a1a; }
-  .pdf-selected { display: flex; align-items: center; gap: 10px; background: #f0f7ff; border: 0.5px solid #c5ddf7; border-radius: 8px; padding: 10px 14px; font-size: 13px; color: #1a5fa8; margin-bottom: 1.25rem; }
-  .pdf-selected-name { flex: 1; font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .pdf-clear { cursor: pointer; color: #888; font-size: 16px; line-height: 1; }
-  .pdf-clear:hover { color: #1a1a1a; }
-  .field { margin-bottom: 1.25rem; }
-  label { display: block; font-size: 13px; font-weight: 500; color: #555; margin-bottom: 6px; }
-  input[type="url"], input[type="text"], textarea, select { width: 100%; padding: 10px 12px; border: 0.5px solid #d8d5ce; border-radius: 8px; font-size: 14px; color: #1a1a1a; background: white; outline: none; transition: border-color 0.15s; font-family: inherit; }
-  input:focus, textarea:focus, select:focus { border-color: #1a1a1a; }
-  textarea { resize: vertical; min-height: 80px; line-height: 1.5; }
-  .url-row { display: flex; gap: 8px; }
-  .url-row input { flex: 1; }
-  .analyze-btn { padding: 10px 14px; background: #1a1a1a; color: white; border: none; border-radius: 8px; font-size: 13px; font-weight: 500; cursor: pointer; white-space: nowrap; transition: opacity 0.15s; }
-  .analyze-btn:hover { opacity: 0.85; }
-  .analyze-btn:disabled { opacity: 0.4; cursor: default; }
-  .ai-fields { background: #fafaf8; border: 0.5px solid #e8e5de; border-radius: 10px; padding: 1.25rem; margin-bottom: 1.25rem; }
-  .ai-label { font-size: 11px; font-weight: 500; color: #aaa; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 1rem; }
-  .skeleton { background: linear-gradient(90deg, #eeece8 25%, #e4e2de 50%, #eeece8 75%); background-size: 200% 100%; animation: shimmer 1.4s infinite; border-radius: 4px; height: 16px; margin-bottom: 8px; }
-  @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
-  .submit-btn { width: 100%; padding: 12px; background: #1a1a1a; color: white; border: none; border-radius: 8px; font-size: 14px; font-weight: 500; cursor: pointer; transition: opacity 0.15s; margin-top: 0.5rem; }
-  .submit-btn:hover { opacity: 0.85; }
-  .submit-btn:disabled { opacity: 0.4; cursor: default; }
-  .status { margin-top: 1rem; padding: 10px 14px; border-radius: 8px; font-size: 13px; display: none; }
-  .status.success { background: #edfaf3; color: #1a7a4a; display: block; }
-  .status.error { background: #fef2f2; color: #b91c1c; display: block; }
-  .status.loading { background: #f5f4f0; color: #888; display: block; }
-  .divider { border: none; border-top: 0.5px solid #e8e5de; margin: 1.5rem 0; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f4f0; min-height: 100vh; display: flex; align-items: flex-start; justify-content: center; padding: 2rem 1rem; }
+.card { background: white; border-radius: 12px; border: 0.5px solid #e0ddd6; padding: 2rem; width: 100%; max-width: 560px; }
+.logo { font-size: 13px; font-weight: 500; color: #888; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 1.5rem; }
+h1 { font-size: 20px; font-weight: 500; color: #1a1a1a; margin-bottom: 0.4rem; }
+.subtitle { font-size: 14px; color: #888; margin-bottom: 1.5rem; }
+.tabs { display: flex; gap: 4px; background: #f5f4f0; border-radius: 8px; padding: 4px; margin-bottom: 1.5rem; }
+.tab { flex: 1; padding: 7px 12px; border: none; border-radius: 6px; background: transparent; font-size: 13px; font-weight: 500; color: #888; cursor: pointer; }
+.tab.active { background: white; color: #1a1a1a; border: 0.5px solid #e0ddd6; }
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+.pdf-drop { border: 1.5px dashed #d8d5ce; border-radius: 10px; padding: 2rem; text-align: center; cursor: pointer; margin-bottom: 1.25rem; background: #fafaf8; }
+.pdf-drop input[type="file"] { display: none; }
+.pdf-drop-icon { font-size: 28px; margin-bottom: 8px; }
+.pdf-drop-text { font-size: 13px; color: #888; }
+.pdf-drop-text strong { color: #1a1a1a; }
+.pdf-selected { display: flex; align-items: center; gap: 10px; background: #f0f7ff; border: 0.5px solid #c5ddf7; border-radius: 8px; padding: 10px 14px; font-size: 13px; color: #1a5fa8; margin-bottom: 1.25rem; }
+.pdf-selected-name { flex: 1; font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.pdf-clear { cursor: pointer; color: #888; font-size: 16px; }
+.field { margin-bottom: 1.25rem; }
+label { display: block; font-size: 13px; font-weight: 500; color: #555; margin-bottom: 6px; }
+input[type="url"], input[type="text"], textarea, select { width: 100%; padding: 10px 12px; border: 0.5px solid #d8d5ce; border-radius: 8px; font-size: 14px; color: #1a1a1a; background: white; outline: none; font-family: inherit; }
+textarea { resize: vertical; min-height: 80px; line-height: 1.5; }
+.url-row { display: flex; gap: 8px; }
+.url-row input { flex: 1; }
+.analyze-btn { padding: 10px 14px; background: #1a1a1a; color: white; border: none; border-radius: 8px; font-size: 13px; font-weight: 500; cursor: pointer; white-space: nowrap; }
+.analyze-btn:disabled { opacity: 0.4; cursor: default; }
+.ai-fields { background: #fafaf8; border: 0.5px solid #e8e5de; border-radius: 10px; padding: 1.25rem; margin-bottom: 1.25rem; }
+.ai-label { font-size: 11px; font-weight: 500; color: #aaa; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 1rem; }
+.skeleton { background: #eeece8; border-radius: 4px; height: 16px; margin-bottom: 8px; }
+.submit-btn { width: 100%; padding: 12px; background: #1a1a1a; color: white; border: none; border-radius: 8px; font-size: 14px; font-weight: 500; cursor: pointer; margin-top: 0.5rem; }
+.submit-btn:disabled { opacity: 0.4; cursor: default; }
+.status { margin-top: 1rem; padding: 10px 14px; border-radius: 8px; font-size: 13px; display: none; }
+.status.success { background: #edfaf3; color: #1a7a4a; display: block; }
+.status.error { background: #fef2f2; color: #b91c1c; display: block; }
+.status.loading { background: #f5f4f0; color: #888; display: block; }
+.divider { border: none; border-top: 0.5px solid #e8e5de; margin: 1.5rem 0; }
 </style>
 </head>
 <body>
@@ -63,13 +57,13 @@
     <div class="field">
       <label>URL</label>
       <div class="url-row">
-        <input type="url" id="url-input" placeholder="https://..." />
+        <input type="url" id="url-input" placeholder="https://" />
         <button class="analyze-btn" id="analyze-btn" onclick="analyzeUrl()">Analiz Et</button>
       </div>
     </div>
   </div>
   <div class="tab-content" id="tab-pdf">
-    <div class="pdf-drop" id="pdf-drop" onclick="document.getElementById('pdf-file').click()" ondragover="event.preventDefault();this.classList.add('drag-over')" ondragleave="this.classList.remove('drag-over')" ondrop="handleDrop(event)">
+    <div class="pdf-drop" id="pdf-drop" onclick="document.getElementById('pdf-file').click()">
       <input type="file" id="pdf-file" accept=".pdf" onchange="handleFileSelect(event)">
       <div class="pdf-drop-icon">📄</div>
       <div class="pdf-drop-text"><strong>PDF seç veya sürükle bırak</strong><br>Claude içeriği okuyup alanları dolduracak</div>
@@ -81,7 +75,7 @@
     </div>
     <button class="analyze-btn" id="analyze-pdf-btn" onclick="analyzePdf()" style="width:100%;margin-bottom:1.25rem;display:none">Analiz Et</button>
   </div>
-  <div class="ai-fields" id="ai-fields" style="display:none;">
+  <div class="ai-fields" id="ai-fields" style="display:none">
     <div class="ai-label">AI tarafından dolduruldu — düzenleyebilirsin</div>
     <div class="field"><label>Başlık</label><input type="text" id="field-title" /></div>
     <div class="field"><label>Yazar / Kurum</label><input type="text" id="field-author" /></div>
@@ -99,24 +93,23 @@
       <select id="field-subject">
         <option value="">Seç...</option>
         <option>Civil Society</option><option>Nonprofit Management</option><option>Grant Writing</option>
-        <option>Impact Measurement</option><option>AI & Technology</option><option>Social Entrepreneurship</option>
-        <option>Entrepreneurship</option><option>Philanthropy</option><option>Policy & Advocacy</option>
-        <option>Community Development</option><option>Leadership & Capacity</option>
-        <option>Funding & Finance</option><option>Research & Data</option>
+        <option>Impact Measurement</option><option>AI &amp; Technology</option><option>Social Entrepreneurship</option>
+        <option>Entrepreneurship</option><option>Philanthropy</option><option>Policy &amp; Advocacy</option>
+        <option>Community Development</option><option>Leadership &amp; Capacity</option>
+        <option>Funding &amp; Finance</option><option>Research &amp; Data</option>
       </select>
     </div>
     <div class="field"><label>Özet</label><textarea id="field-summary" rows="3"></textarea></div>
   </div>
-  <div id="skeleton-fields" style="display:none;">
+  <div id="skeleton-fields" style="display:none">
     <div class="ai-fields">
       <div class="ai-label">İçerik okunuyor...</div>
-      <div class="skeleton" style="width:60%;"></div>
-      <div class="skeleton" style="width:40%; margin-top:12px;"></div>
-      <div class="skeleton" style="width:30%; margin-top:12px;"></div>
-      <div class="skeleton" style="width:80%; margin-top:12px;"></div>
+      <div class="skeleton" style="width:60%"></div>
+      <div class="skeleton" style="width:40%;margin-top:12px"></div>
+      <div class="skeleton" style="width:80%;margin-top:12px"></div>
     </div>
   </div>
-  <div id="manual-section" style="display:none;">
+  <div id="manual-section" style="display:none">
     <hr class="divider">
     <div class="field"><label>Ekleyen</label><input type="text" id="field-addedby" placeholder="Adın" /></div>
     <button class="submit-btn" id="submit-btn" onclick="submitToNotion()">Notion'a Kaydet</button>
@@ -124,179 +117,235 @@
   <div class="status" id="status"></div>
 </div>
 <script>
-const NOTION_DS = "2ef98422-64e7-80fc-8f9f-000bf0c065ba";
-const API = "/.netlify/functions/claude";
-let selectedPdfFile = null;
+var NOTION_DS = "2ef98422-64e7-80fc-8f9f-000bf0c065ba";
+var API = "/.netlify/functions/claude";
+var MEDIUMS = ["Article","Research Paper","Report","Blog Post","Book Excerpt","Podcast","Newsletter","Video","Toolkit / Guide","Dataset"];
+var SUBJECTS = ["Civil Society","Nonprofit Management","Grant Writing","Impact Measurement","AI & Technology","Social Entrepreneurship","Entrepreneurship","Philanthropy","Policy & Advocacy","Community Development","Leadership & Capacity","Funding & Finance","Research & Data"];
+var selectedPdfFile = null;
 
 function switchTab(tab) {
-  document.querySelectorAll('.tab').forEach((t, i) => t.classList.toggle('active', (i === 0) === (tab === 'url')));
-  document.getElementById('tab-url').classList.toggle('active', tab === 'url');
-  document.getElementById('tab-pdf').classList.toggle('active', tab === 'pdf');
-  document.getElementById('ai-fields').style.display = 'none';
-  document.getElementById('manual-section').style.display = 'none';
+  var tabs = document.querySelectorAll(".tab");
+  tabs[0].classList.toggle("active", tab === "url");
+  tabs[1].classList.toggle("active", tab === "pdf");
+  document.getElementById("tab-url").classList.toggle("active", tab === "url");
+  document.getElementById("tab-pdf").classList.toggle("active", tab === "pdf");
+  document.getElementById("ai-fields").style.display = "none";
+  document.getElementById("manual-section").style.display = "none";
   clearStatus();
 }
 
-function handleFileSelect(e) { const f = e.target.files[0]; if (f) setPdfFile(f); }
-function handleDrop(e) { e.preventDefault(); document.getElementById('pdf-drop').classList.remove('drag-over'); const f = e.dataTransfer.files[0]; if (f && f.type === 'application/pdf') setPdfFile(f); }
+function handleFileSelect(e) {
+  var f = e.target.files[0];
+  if (f) setPdfFile(f);
+}
+
 function setPdfFile(file) {
   selectedPdfFile = file;
-  document.getElementById('pdf-drop').style.display = 'none';
-  document.getElementById('pdf-selected').style.display = 'flex';
-  document.getElementById('pdf-name').textContent = file.name;
-  document.getElementById('analyze-pdf-btn').style.display = 'block';
-  document.getElementById('ai-fields').style.display = 'none';
-  document.getElementById('manual-section').style.display = 'none';
+  document.getElementById("pdf-drop").style.display = "none";
+  document.getElementById("pdf-selected").style.display = "flex";
+  document.getElementById("pdf-name").textContent = file.name;
+  document.getElementById("analyze-pdf-btn").style.display = "block";
   clearStatus();
 }
+
 function clearPdf() {
   selectedPdfFile = null;
-  document.getElementById('pdf-file').value = '';
-  document.getElementById('pdf-drop').style.display = 'block';
-  document.getElementById('pdf-selected').style.display = 'none';
-  document.getElementById('analyze-pdf-btn').style.display = 'none';
-  document.getElementById('ai-fields').style.display = 'none';
-  document.getElementById('manual-section').style.display = 'none';
+  document.getElementById("pdf-file").value = "";
+  document.getElementById("pdf-drop").style.display = "block";
+  document.getElementById("pdf-selected").style.display = "none";
+  document.getElementById("analyze-pdf-btn").style.display = "none";
+  document.getElementById("ai-fields").style.display = "none";
+  document.getElementById("manual-section").style.display = "none";
   clearStatus();
 }
-
-const MEDIUMS = ['Article','Research Paper','Report','Blog Post','Book Excerpt','Podcast','Newsletter','Video','Toolkit / Guide','Dataset'];
-const SUBJECTS = ['Civil Society','Nonprofit Management','Grant Writing','Impact Measurement','AI & Technology','Social Entrepreneurship','Entrepreneurship','Philanthropy','Policy & Advocacy','Community Development','Leadership & Capacity','Funding & Finance','Research & Data'];
 
 function populateFields(result, url) {
-  document.getElementById('skeleton-fields').style.display = 'none';
-  document.getElementById('field-title').value = result.title || '';
-  document.getElementById('field-author').value = result.author || '';
-  if (url) document.getElementById('url-input').value = url;
-  const medSel = document.getElementById('field-medium');
-  for (let opt of medSel.options) { if (opt.value === result.medium) { medSel.value = result.medium; break; } }
-  const subSel = document.getElementById('field-subject');
-  for (let opt of subSel.options) { if (opt.value === result.subject) { subSel.value = result.subject; break; } }
-  document.getElementById('field-summary').value = result.summary || '';
-  document.getElementById('ai-fields').style.display = 'block';
-  document.getElementById('manual-section').style.display = 'block';
+  document.getElementById("skeleton-fields").style.display = "none";
+  document.getElementById("field-title").value = result.title || "";
+  document.getElementById("field-author").value = result.author || "";
+  if (url) document.getElementById("url-input").value = url;
+  var medSel = document.getElementById("field-medium");
+  for (var i = 0; i < medSel.options.length; i++) {
+    if (medSel.options[i].value === result.medium) { medSel.value = result.medium; break; }
+  }
+  var subSel = document.getElementById("field-subject");
+  for (var j = 0; j < subSel.options.length; j++) {
+    if (subSel.options[j].value === result.subject) { subSel.value = result.subject; break; }
+  }
+  document.getElementById("field-summary").value = result.summary || "";
+  document.getElementById("ai-fields").style.display = "block";
+  document.getElementById("manual-section").style.display = "block";
   clearStatus();
 }
 
-async function callClaude(payload) {
-  const res = await fetch(API, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ type: 'claude', payload })
-  });
-  return res.json();
+function callClaude(payload, callback) {
+  fetch(API, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ type: "claude", payload: payload })
+  })
+  .then(function(r) { return r.json(); })
+  .then(function(data) { callback(null, data); })
+  .catch(function(e) { callback(e, null); });
 }
 
-async function analyzeUrl() {
-  const url = document.getElementById('url-input').value.trim();
+function analyzeUrl() {
+  var url = document.getElementById("url-input").value.trim();
   if (!url) return;
-  document.getElementById('ai-fields').style.display = 'none';
-  document.getElementById('manual-section').style.display = 'none';
-  document.getElementById('skeleton-fields').style.display = 'block';
-  document.getElementById('analyze-btn').disabled = true;
-  setStatus('loading', 'İçerik okunuyor...');
-  try {
-    const data = await callClaude({
-      model: 'claude-sonnet-4-20250514', max_tokens: 1000,
-      tools: [{ type: 'web_search_20250305', name: 'web_search' }],
-      messages: [{ role: 'user', content: `Analyze the content at this URL and return ONLY a JSON object with fields: title, author, medium (from: ${MEDIUMS.join(', ')}), subject (from: ${SUBJECTS.join(', ')}), summary (2-3 sentences). No markdown. URL: ${url}` }]
-    });
-    const textBlock = data.content.find(b => b.type === 'text');
-    if (!textBlock) throw new Error('No response');
-    const result = JSON.parse(textBlock.text.trim().replace(/```json|```/g, '').trim());
-    populateFields(result, url);
-  } catch(e) {
-    document.getElementById('skeleton-fields').style.display = 'none';
-    document.getElementById('ai-fields').style.display = 'block';
-    document.getElementById('manual-section').style.display = 'block';
-    setStatus('error', 'İçerik okunamadı, alanları manuel doldurabilirsin.');
-  }
-  document.getElementById('analyze-btn').disabled = false;
+  document.getElementById("ai-fields").style.display = "none";
+  document.getElementById("manual-section").style.display = "none";
+  document.getElementById("skeleton-fields").style.display = "block";
+  document.getElementById("analyze-btn").disabled = true;
+  setStatus("loading", "İçerik okunuyor...");
+  var prompt = "Analyze the content at this URL and return ONLY a JSON object with fields: title, author, medium (from: " + MEDIUMS.join(", ") + "), subject (from: " + SUBJECTS.join(", ") + "), summary (2-3 sentences). No markdown, no explanation. URL: " + url;
+  callClaude({
+    model: "claude-sonnet-4-20250514",
+    max_tokens: 1000,
+    tools: [{ type: "web_search_20250305", name: "web_search" }],
+    messages: [{ role: "user", content: prompt }]
+  }, function(err, data) {
+    document.getElementById("analyze-btn").disabled = false;
+    if (err || !data || !data.content) {
+      document.getElementById("skeleton-fields").style.display = "none";
+      document.getElementById("ai-fields").style.display = "block";
+      document.getElementById("manual-section").style.display = "block";
+      setStatus("error", "İçerik okunamadı, manuel doldur.");
+      return;
+    }
+    var textBlock = null;
+    for (var i = 0; i < data.content.length; i++) {
+      if (data.content[i].type === "text") { textBlock = data.content[i]; break; }
+    }
+    if (!textBlock) {
+      document.getElementById("skeleton-fields").style.display = "none";
+      document.getElementById("ai-fields").style.display = "block";
+      document.getElementById("manual-section").style.display = "block";
+      setStatus("error", "Yanıt alınamadı.");
+      return;
+    }
+    try {
+      var json = textBlock.text.trim().replace(/```json|```/g, "").trim();
+      var result = JSON.parse(json);
+      populateFields(result, url);
+    } catch(e) {
+      document.getElementById("skeleton-fields").style.display = "none";
+      document.getElementById("ai-fields").style.display = "block";
+      document.getElementById("manual-section").style.display = "block";
+      setStatus("error", "Sonuç ayrıştırılamadı, manuel doldur.");
+    }
+  });
 }
 
-async function analyzePdf() {
+function analyzePdf() {
   if (!selectedPdfFile) return;
-  document.getElementById('ai-fields').style.display = 'none';
-  document.getElementById('manual-section').style.display = 'none';
-  document.getElementById('skeleton-fields').style.display = 'block';
-  document.getElementById('analyze-pdf-btn').disabled = true;
-  setStatus('loading', 'PDF okunuyor...');
-  try {
-    const base64Data = await new Promise((res, rej) => {
-      const r = new FileReader();
-      r.onload = () => res(r.result.split(',')[1]);
-      r.onerror = () => rej(new Error('Read failed'));
-      r.readAsDataURL(selectedPdfFile);
-    });
-    const data = await callClaude({
-      model: 'claude-sonnet-4-20250514', max_tokens: 1000,
-      messages: [{ role: 'user', content: [
-        { type: 'document', source: { type: 'base64', media_type: 'application/pdf', data: base64Data } },
-        { type: 'text', text: `Analyze this PDF and return ONLY a JSON object with fields: title, author, medium (from: ${MEDIUMS.join(', ')}), subject (from: ${SUBJECTS.join(', ')}), summary (2-3 sentences in English). No markdown, no explanation.` }
+  document.getElementById("ai-fields").style.display = "none";
+  document.getElementById("manual-section").style.display = "none";
+  document.getElementById("skeleton-fields").style.display = "block";
+  document.getElementById("analyze-pdf-btn").disabled = true;
+  setStatus("loading", "PDF okunuyor...");
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    var base64 = e.target.result.split(",")[1];
+    callClaude({
+      model: "claude-sonnet-4-20250514",
+      max_tokens: 1000,
+      messages: [{ role: "user", content: [
+        { type: "document", source: { type: "base64", media_type: "application/pdf", data: base64 } },
+        { type: "text", text: "Analyze this PDF and return ONLY a JSON object with fields: title, author, medium (from: " + MEDIUMS.join(", ") + "), subject (from: " + SUBJECTS.join(", ") + "), summary (2-3 sentences in English). No markdown." }
       ]}]
+    }, function(err, data) {
+      document.getElementById("analyze-pdf-btn").disabled = false;
+      if (err || !data || !data.content) {
+        document.getElementById("skeleton-fields").style.display = "none";
+        document.getElementById("ai-fields").style.display = "block";
+        document.getElementById("manual-section").style.display = "block";
+        setStatus("error", "PDF okunamadı, manuel doldur.");
+        return;
+      }
+      var textBlock = null;
+      for (var i = 0; i < data.content.length; i++) {
+        if (data.content[i].type === "text") { textBlock = data.content[i]; break; }
+      }
+      if (!textBlock) {
+        document.getElementById("skeleton-fields").style.display = "none";
+        document.getElementById("ai-fields").style.display = "block";
+        document.getElementById("manual-section").style.display = "block";
+        setStatus("error", "Yanıt alınamadı.");
+        return;
+      }
+      try {
+        var json = textBlock.text.trim().replace(/```json|```/g, "").trim();
+        var result = JSON.parse(json);
+        populateFields(result, "");
+      } catch(e) {
+        document.getElementById("skeleton-fields").style.display = "none";
+        document.getElementById("ai-fields").style.display = "block";
+        document.getElementById("manual-section").style.display = "block";
+        setStatus("error", "Sonuç ayrıştırılamadı, manuel doldur.");
+      }
     });
-    const textBlock = data.content.find(b => b.type === 'text');
-    if (!textBlock) throw new Error('No response');
-    const result = JSON.parse(textBlock.text.trim().replace(/```json|```/g, '').trim());
-    populateFields(result, '');
-  } catch(e) {
-    document.getElementById('skeleton-fields').style.display = 'none';
-    document.getElementById('ai-fields').style.display = 'block';
-    document.getElementById('manual-section').style.display = 'block';
-    setStatus('error', 'PDF okunamadı, alanları manuel doldurabilirsin.');
-  }
-  document.getElementById('analyze-pdf-btn').disabled = false;
-}
-
-async function submitToNotion() {
-  const url = document.getElementById('url-input').value.trim();
-  const title = document.getElementById('field-title').value.trim();
-  const author = document.getElementById('field-author').value.trim();
-  const medium = document.getElementById('field-medium').value;
-  const subject = document.getElementById('field-subject').value;
-  const summary = document.getElementById('field-summary').value.trim();
-  const addedBy = document.getElementById('field-addedby').value.trim();
-  if (!title) { setStatus('error', 'En az başlık gerekli.'); return; }
-  document.getElementById('submit-btn').disabled = true;
-  setStatus('loading', "Notion'a ekleniyor...");
-  const today = new Date().toISOString().split('T')[0];
-  const notionBody = {
-    parent: { database_id: NOTION_DS },
-    properties: {
-      "": { title: [{ text: { content: title } }] },
-      "Yazar / Kurum": { rich_text: [{ text: { content: author || '' } }] },
-      "Summary": { rich_text: [{ text: { content: summary || '' } }] },
-      "Added By": { rich_text: [{ text: { content: addedBy || '' } }] },
-      "Date Added": { date: { start: today } }
-    }
   };
-  if (url) notionBody.properties["URLL"] = { url: url };
-  if (medium) notionBody.properties["Medium"] = { select: { name: medium } };
-  if (subject) notionBody.properties["Subject"] = { select: { name: subject } };
-  try {
-    const res = await fetch(API, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ type: 'notion', payload: { url: 'https://api.notion.com/v1/pages', method: 'POST', body: notionBody } })
-    });
-    const data = await res.json();
-    if (data.id) {
-      setStatus('success', "✓ Kayıt eklendi! Notion'da görüntüleyebilirsin.");
-      document.getElementById('url-input').value = '';
-      document.getElementById('ai-fields').style.display = 'none';
-      document.getElementById('manual-section').style.display = 'none';
-    } else {
-      throw new Error(data.message || JSON.stringify(data));
-    }
-  } catch(e) {
-    setStatus('error', "Notion'a eklenemedi: " + e.message);
-  }
-  document.getElementById('submit-btn').disabled = false;
+  reader.readAsDataURL(selectedPdfFile);
 }
 
-function setStatus(type, msg) { const el = document.getElementById('status'); el.className = 'status ' + type; el.textContent = msg; }
-function clearStatus() { const el = document.getElementById('status'); el.className = 'status'; el.style.display = 'none'; }
-document.getElementById('url-input').addEventListener('keydown', e => { if (e.key === 'Enter') analyzeUrl(); });
+function submitToNotion() {
+  var title = document.getElementById("field-title").value.trim();
+  var url = document.getElementById("url-input").value.trim();
+  var author = document.getElementById("field-author").value.trim();
+  var medium = document.getElementById("field-medium").value;
+  var subject = document.getElementById("field-subject").value;
+  var summary = document.getElementById("field-summary").value.trim();
+  var addedBy = document.getElementById("field-addedby").value.trim();
+  if (!title) { setStatus("error", "En az başlık gerekli."); return; }
+  document.getElementById("submit-btn").disabled = true;
+  setStatus("loading", "Notion'a ekleniyor...");
+  var today = new Date().toISOString().split("T")[0];
+  var props = {
+    "": { title: [{ text: { content: title } }] },
+    "Yazar / Kurum": { rich_text: [{ text: { content: author } }] },
+    "Summary": { rich_text: [{ text: { content: summary } }] },
+    "Added By": { rich_text: [{ text: { content: addedBy } }] },
+    "Date Added": { date: { start: today } }
+  };
+  if (url) props["URLL"] = { url: url };
+  if (medium) props["Medium"] = { select: { name: medium } };
+  if (subject) props["Subject"] = { select: { name: subject } };
+  fetch(API, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ type: "notion", payload: { url: "https://api.notion.com/v1/pages", method: "POST", body: { parent: { database_id: NOTION_DS }, properties: props } } })
+  })
+  .then(function(r) { return r.json(); })
+  .then(function(data) {
+    document.getElementById("submit-btn").disabled = false;
+    if (data.id) {
+      setStatus("success", "Kayıt eklendi!");
+      document.getElementById("url-input").value = "";
+      document.getElementById("ai-fields").style.display = "none";
+      document.getElementById("manual-section").style.display = "none";
+    } else {
+      setStatus("error", "Hata: " + (data.message || JSON.stringify(data)));
+    }
+  })
+  .catch(function(e) {
+    document.getElementById("submit-btn").disabled = false;
+    setStatus("error", "Bağlantı hatası: " + e.message);
+  });
+}
+
+function setStatus(type, msg) {
+  var el = document.getElementById("status");
+  el.className = "status " + type;
+  el.textContent = msg;
+}
+function clearStatus() {
+  var el = document.getElementById("status");
+  el.className = "status";
+  el.style.display = "none";
+}
+document.getElementById("url-input").addEventListener("keydown", function(e) {
+  if (e.key === "Enter") analyzeUrl();
+});
 </script>
 </body>
 </html>
